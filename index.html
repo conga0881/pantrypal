@@ -17,21 +17,45 @@
       }
     </style>
     <link rel="stylesheet" href="styles.css">
-  <script>
+    <script>
       function searchRecipes() {
-          const ingredients = document.getElementById('ingredient-search').value;
-          alert(`Searching recipes with: ${ingredients}`);
+          // Get selected ingredients
+          const selectedIngredients = Array.from(
+              document.getElementById('ingredient-dropdown').selectedOptions
+          ).map(option => option.value);
+
+          // Get text input
+          const textInput = document.getElementById('ingredient-search').value.trim();
+
+          // Display search query (connect to backend here for actual functionality)
+          alert(
+              `Searching for recipes with ingredients: ${selectedIngredients.join(
+                  ', '
+              )} and keywords: "${textInput}"`
+          );
       }
-  </script>
+    </script>
   </head>
   <body>
     <h1>Welcome to PantryPal</h1>
     <p>Find delicious recipes based on the ingredients you have!</p>
     <div class="search-container">
         <h2>Search for Recipes</h2>
-        <input type="text" id="ingredient-search" placeholder="Enter ingredients (e.g., eggs, flour)">
+        <!-- Dropdown for pre-selected ingredients -->
+        <select id="ingredient-dropdown" multiple>
+            <option value="chicken">Chicken</option>
+            <option value="beef">Beef</option>
+            <option value="tofu">Tofu</option>
+            <option value="broccoli">Broccoli</option>
+            <option value="potatoes">Potatoes</option>
+            <option value="cheese">Cheese</option>
+            <option value="rice">Rice</option>
+            <option value="tomato">Tomato</option>
+        </select>
+
+        <!-- Search bar for text-based input -->
+        <input type="text" id="ingredient-search" placeholder="Search for a specific recipe...">
         <button onclick="searchRecipes()">Search</button>
     </div>
-
   </body>
 </html>

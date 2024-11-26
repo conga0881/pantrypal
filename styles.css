@@ -65,6 +65,30 @@ header {
     margin-bottom: 15px;
 }
 
+/* Dropdown styling */
+#ingredient-dropdown {
+    width: 80%;
+    max-width: 500px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    background-color: #fff;
+    color: #333;
+    display: block;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Multi-select dropdown option styling */
+#ingredient-dropdown option {
+    padding: 5px;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* Text input styling */
 input[type="text"] {
     width: 80%;
     max-width: 500px;
@@ -76,6 +100,7 @@ input[type="text"] {
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
+/* Button styling */
 button {
     padding: 10px 20px;
     font-size: 1rem;
@@ -94,7 +119,7 @@ button:hover {
 
 /* Responsive styling */
 @media (max-width: 768px) {
-    input[type="text"] {
+    input[type="text"], #ingredient-dropdown {
         width: 90%;
     }
 
@@ -102,3 +127,4 @@ button:hover {
         width: 90%;
     }
 }
+

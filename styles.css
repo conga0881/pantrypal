@@ -65,30 +65,7 @@ header {
     margin-bottom: 15px;
 }
 
-/* Dropdown styling */
-#ingredient-dropdown {
-    width: 80%;
-    max-width: 500px;
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 15px;
-    background-color: #fff;
-    color: #333;
-    display: block;
-    text-align: center;
-    cursor: pointer;
-}
-
-/* Multi-select dropdown option styling */
-#ingredient-dropdown option {
-    padding: 5px;
-    background-color: #f9f9f9;
-    color: #333;
-}
-
-/* Text input styling */
+/* Input field styling */
 input[type="text"] {
     width: 80%;
     max-width: 500px;
@@ -117,9 +94,29 @@ button:hover {
     transform: scale(1.05);
 }
 
+/* Dropdown styling */
+.dropdown {
+    display: none;
+    margin: 15px auto;
+    text-align: left;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    max-width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
 /* Responsive styling */
 @media (max-width: 768px) {
-    input[type="text"], #ingredient-dropdown {
+    input[type="text"] {
         width: 90%;
     }
 
@@ -127,4 +124,3 @@ button:hover {
         width: 90%;
     }
 }
-

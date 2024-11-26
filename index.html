@@ -17,9 +17,21 @@
       }
     </style>
     <link rel="stylesheet" href="styles.css">
+  <script>
+      function searchRecipes() {
+          const ingredients = document.getElementById('ingredient-search').value;
+          alert(`Searching recipes with: ${ingredients}`);
+      }
+  </script>
   </head>
   <body>
     <h1>Welcome to PantryPal</h1>
     <p>Find delicious recipes based on the ingredients you have!</p>
+    <div class="search-container">
+        <h2>Search for Recipes</h2>
+        <input type="text" id="ingredient-search" placeholder="Enter ingredients (e.g., eggs, flour)">
+        <button onclick="searchRecipes()">Search</button>
+    </div>
+
   </body>
 </html>

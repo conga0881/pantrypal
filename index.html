@@ -1,100 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PantryPal</title>
     <link rel="stylesheet" href="styles.css">
-    <script>
-        // Sample recipe database (can be expanded)
-        const recipes = [
-            { name: "Pancakes", ingredients: ["Eggs", "Flour", "Milk", "Butter", "Sugar"] },
-            { name: "Cookies", ingredients: ["Eggs", "Flour", "Butter", "Sugar"] },
-            { name: "Omelette", ingredients: ["Eggs", "Milk", "Butter"] },
-            { name: "Cake", ingredients: ["Eggs", "Flour", "Sugar", "Butter"] },
-            { name: "Chocolate Cake", ingredients: ["Eggs", "Flour", "Butter", "Sugar", "Chocolate"] },
-        ];
-
-        // Function to search recipes
-        function searchRecipes() {
-            const selectedIngredients = [];
-            const ingredientCheckboxes = document.querySelectorAll('.ingredient-checkbox:checked');
-            ingredientCheckboxes.forEach(checkbox => selectedIngredients.push(checkbox.value));
-
-            const additionalIngredients = document.getElementById('additional-ingredients').value;
-            if (additionalIngredients) {
-                selectedIngredients.push(additionalIngredients);
-            }
-
-            if (selectedIngredients.length > 0) {
-                // Find recipes that match the selected ingredients
-                const matchedRecipes = recipes.filter(recipe => {
-                    return selectedIngredients.every(ingredient => recipe.ingredients.includes(ingredient));
-                });
-
-                displayResults(matchedRecipes);
-            } else {
-                alert('Please select at least one ingredient.');
-            }
-        }
-
-        // Function to display the search results
-        function displayResults(matchedRecipes) {
-            const resultsContainer = document.getElementById('results');
-            resultsContainer.innerHTML = ''; // Clear previous results
-
-            if (matchedRecipes.length === 0) {
-                resultsContainer.innerHTML = '<p>No recipes found with the selected ingredients.</p>';
-            } else {
-                const list = document.createElement('ul');
-                matchedRecipes.forEach(recipe => {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = recipe.name;
-                    list.appendChild(listItem);
-                });
-                resultsContainer.appendChild(list);
-            }
-        }
-
-        // Toggle the visibility of the ingredient dropdown
-        function toggleIngredientDropdown() {
-            const dropdown = document.getElementById('ingredient-dropdown');
-            dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
-        }
-    </script>
-</head>
-<body>
-    <header>
-        <h1>Welcome to PantryPal</h1>
-        <p>Find delicious recipes based on the ingredients you have!</p>
-        <div class="slogan">Transform what you have into what you crave</div>
-    </header>
+  </head>
+  <body>
+    <div class="slogan">Transform what you have into what you crave</div>
+    <h1>Welcome to PantryPal</h1>
+    <p>Find delicious recipes based on the ingredients you have!</p>
 
     <div class="search-container">
-        <h2>Search for Recipes</h2>
-        
-        <!-- Button to toggle ingredient selection dropdown -->
-        <button id="ingredient-toggle" onclick="toggleIngredientDropdown()">Select Ingredients</button>
+      <h2>Search for Recipes</h2>
+      <!-- Ingredient Selection Dropdown -->
+      <label for="ingredient-select">Select Ingredients:</label>
+      <select id="ingredient-select" multiple>
+        <option value="eggs">Eggs</option>
+        <option value="flour">Flour</option>
+        <option value="milk">Milk</option>
+        <option value="butter">Butter</option>
+        <option value="sugar">Sugar</option>
+        <!-- Add more ingredients as necessary -->
+      </select>
 
-        <!-- Dropdown for ingredient selection -->
-        <div id="ingredient-dropdown" style="display: none;">
-            <label><input type="checkbox" class="ingredient-checkbox" value="Eggs"> Eggs</label><br>
-            <label><input type="checkbox" class="ingredient-checkbox" value="Flour"> Flour</label><br>
-            <label><input type="checkbox" class="ingredient-checkbox" value="Milk"> Milk</label><br>
-            <label><input type="checkbox" class="ingredient-checkbox" value="Butter"> Butter</label><br>
-            <label><input type="checkbox" class="ingredient-checkbox" value="Sugar"> Sugar</label><br>
-            <!-- Add more ingredients here as needed -->
-        </div>
+      <!-- Text Input for Additional Ingredients -->
+      <input type="text" id="ingredient-search" placeholder="Enter additional ingredients (e.g., chocolate)" />
 
-        <!-- Input for additional ingredients -->
-        <input type="text" id="additional-ingredients" placeholder="Enter additional ingredients (e.g., chocolate)">
-
-        <!-- Search button -->
-        <button onclick="searchRecipes()">Search</button>
-
-        <!-- Display search results here -->
-        <div id="results"></div>
+      <!-- Search Button -->
+      <button onclick="searchRecipes()">Search</button>
     </div>
 
-</body>
+    <div id="search-results"></div>
+
+    <script>
+      function searchRecipes() {
+        const selectedIngredients = Array.from(document.getElementById('ingredient-select').selectedOptions).map(option => option.value);
+        const additionalIngredients = document.getElementById('ingredient-search').value.split(',');
+
+        const allIngredients = [...selectedIngredients, ...additionalIngredients].map(ingredient => ingredient.trim()).filter(Boolean);
+
+        // Show results
+        const resultContainer = document.getElementById('search-results');
+        if (allIngredients.length > 0) {
+          resultContainer.innerHTML = `<h3>Recipes for: ${allIngredients.join(', ')}</h3>`;
+          // Here you would replace this with an actual recipe search logic/API
+          resultContainer.innerHTML += `<p>Found recipes based on the ingredients: ${allIngredients.join(', ')}</p>`;
+        } else {
+          resultContainer.innerHTML = "<p>Please select or enter some ingredients to search for recipes.</p>";
+        }
+      }
+    </script>
+  </body>
 </html>

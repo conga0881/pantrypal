@@ -18,11 +18,18 @@
                 selectedIngredients.push(additionalIngredients);
             }
 
+            // Show an alert with the selected ingredients
             if (selectedIngredients.length > 0) {
                 alert(`Searching recipes with: ${selectedIngredients.join(', ')}`);
             } else {
                 alert('Please select at least one ingredient.');
             }
+        }
+        
+        // Toggle the visibility of the ingredient dropdown
+        function toggleIngredientDropdown() {
+            const dropdown = document.getElementById('ingredient-dropdown');
+            dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
         }
     </script>
 </head>
@@ -35,24 +42,26 @@
 
     <div class="search-container">
         <h2>Search for Recipes</h2>
-        <button id="ingredient-toggle">Select Ingredients</button>
+        
+        <!-- Button to toggle ingredient selection dropdown -->
+        <button id="ingredient-toggle" onclick="toggleIngredientDropdown()">Select Ingredients</button>
+
+        <!-- Dropdown for ingredient selection -->
         <div id="ingredient-dropdown" style="display: none;">
             <label><input type="checkbox" class="ingredient-checkbox" value="Eggs"> Eggs</label><br>
             <label><input type="checkbox" class="ingredient-checkbox" value="Flour"> Flour</label><br>
             <label><input type="checkbox" class="ingredient-checkbox" value="Milk"> Milk</label><br>
             <label><input type="checkbox" class="ingredient-checkbox" value="Butter"> Butter</label><br>
             <label><input type="checkbox" class="ingredient-checkbox" value="Sugar"> Sugar</label><br>
-            <!-- Add more ingredients here -->
+            <!-- Add more ingredients here as needed -->
         </div>
+
+        <!-- Input for additional ingredients -->
         <input type="text" id="additional-ingredients" placeholder="Enter additional ingredients (e.g., chocolate)">
+
+        <!-- Search button -->
         <button onclick="searchRecipes()">Search</button>
     </div>
 
-    <script>
-        document.getElementById('ingredient-toggle').onclick = function() {
-            const dropdown = document.getElementById('ingredient-dropdown');
-            dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
-        };
-    </script>
 </body>
 </html>

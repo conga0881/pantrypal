@@ -6,26 +6,56 @@
     <title>PantryPal</title>
     <link rel="stylesheet" href="styles.css">
     <script>
+        // Sample recipe database (can be expanded)
+        const recipes = [
+            { name: "Pancakes", ingredients: ["Eggs", "Flour", "Milk", "Butter", "Sugar"] },
+            { name: "Cookies", ingredients: ["Eggs", "Flour", "Butter", "Sugar"] },
+            { name: "Omelette", ingredients: ["Eggs", "Milk", "Butter"] },
+            { name: "Cake", ingredients: ["Eggs", "Flour", "Sugar", "Butter"] },
+            { name: "Chocolate Cake", ingredients: ["Eggs", "Flour", "Butter", "Sugar", "Chocolate"] },
+        ];
+
+        // Function to search recipes
         function searchRecipes() {
-            // Get selected ingredients
             const selectedIngredients = [];
             const ingredientCheckboxes = document.querySelectorAll('.ingredient-checkbox:checked');
             ingredientCheckboxes.forEach(checkbox => selectedIngredients.push(checkbox.value));
 
-            // Get the additional ingredient text input
             const additionalIngredients = document.getElementById('additional-ingredients').value;
             if (additionalIngredients) {
                 selectedIngredients.push(additionalIngredients);
             }
 
-            // Show an alert with the selected ingredients
             if (selectedIngredients.length > 0) {
-                alert(`Searching recipes with: ${selectedIngredients.join(', ')}`);
+                // Find recipes that match the selected ingredients
+                const matchedRecipes = recipes.filter(recipe => {
+                    return selectedIngredients.every(ingredient => recipe.ingredients.includes(ingredient));
+                });
+
+                displayResults(matchedRecipes);
             } else {
                 alert('Please select at least one ingredient.');
             }
         }
-        
+
+        // Function to display the search results
+        function displayResults(matchedRecipes) {
+            const resultsContainer = document.getElementById('results');
+            resultsContainer.innerHTML = ''; // Clear previous results
+
+            if (matchedRecipes.length === 0) {
+                resultsContainer.innerHTML = '<p>No recipes found with the selected ingredients.</p>';
+            } else {
+                const list = document.createElement('ul');
+                matchedRecipes.forEach(recipe => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = recipe.name;
+                    list.appendChild(listItem);
+                });
+                resultsContainer.appendChild(list);
+            }
+        }
+
         // Toggle the visibility of the ingredient dropdown
         function toggleIngredientDropdown() {
             const dropdown = document.getElementById('ingredient-dropdown');
@@ -61,6 +91,9 @@
 
         <!-- Search button -->
         <button onclick="searchRecipes()">Search</button>
+
+        <!-- Display search results here -->
+        <div id="results"></div>
     </div>
 
 </body>

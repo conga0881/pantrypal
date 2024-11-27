@@ -1,36 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PantryPal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
 <body>
-    <div class="shape shape-1"></div>
-    <div class="shape shape-2"></div>
-    <div class="shape shape-3"></div>
-
-    <header class="header">
+    <header>
         <h1>Welcome to PantryPal</h1>
         <p class="slogan">Transform what you have into what you crave!</p>
     </header>
 
-    <div class="search-container">
-        <h2>Search for Recipes</h2>
-        
-        <button id="select-ingredients-btn" onclick="toggleDropdown()">Select Ingredients</button>
-        <div id="ingredient-dropdown" class="dropdown-content">
-            <label><input type="checkbox" value="eggs"> Eggs</label>
-            <label><input type="checkbox" value="flour"> Flour</label>
-            <label><input type="checkbox" value="milk"> Milk</label>
-            <label><input type="checkbox" value="butter"> Butter</label>
-            <label><input type="checkbox" value="sugar"> Sugar</label>
-            <label><input type="checkbox" value="salt"> Salt</label>
-            <label><input type="checkbox" value="chocolate"> Chocolate</label>
-            <label><input type="checkbox" value="vanilla"> Vanilla</label>
-            <label><input type="checkbox" value="baking powder"> Baking Powder</label>
-            <label><input type="checkbox" value="yeast"> Yeast</label>
-        </div>
+    <main>
+        <section class="search-section">
+            <h2>Search for Recipes</h2>
+            <div class="ingredient-selection">
+                <label>Select Ingredients:</label><br>
+                <input type="checkbox" id="eggs" value="eggs"> Eggs<br>
+                <input type="checkbox" id="flour" value="flour"> Flour<br>
+                <input type="checkbox" id="milk" value="milk"> Milk<br>
+                <input type="checkbox" id="butter" value="butter"> Butter<br>
+                <input type="checkbox" id="sugar" value="sugar"> Sugar<br>
+            </div>
+            <div>
+                <input type="text" id="additionalIngredients" placeholder="Enter additional ingredients (e.g., chocolate)">
+            </div>
+            <button id="searchButton">Search</button>
+        </section>
 
-        <p>OR add additional ingredients:</p>
-        <input type="text" id="additional-ingredients" placeholder="Enter ingredients (e.g., chocolate)">
-        
-        <br><br>
-        <button onclick="searchRecipes()">Search</button>
-    </div>
+        <section id="recipeResults">
+            <h2>Recipes Found:</h2>
+            <ul id="recipes"></ul>
+        </section>
+    </main>
 
-    <div id="recipe-results" class="centered"></div>
+    <script src="script.js"></script>
 </body>
+</html>

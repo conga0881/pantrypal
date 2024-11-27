@@ -1,35 +1,42 @@
-document.getElementById('searchButton').addEventListener('click', function () {
-    const selectedIngredients = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
-        .map(option => option.value);
+const recipes = {
+  Pancakes: {
+    ingredients: ['Eggs', 'Flour', 'Milk'],
+    url: 'pancakes.html'
+  },
+  Cake: {
+    ingredients: ['Flour', 'Milk', 'Butter', 'Sugar'],
+    url: 'cake.html'
+  },
+  Omelette: {
+    ingredients: ['Eggs', 'Butter'],
+    url: 'omelette.html'
+  }
+};
 
-    const additionalIngredients = document.getElementById('additionalIngredients').value.split(',')
-        .map(ingredient => ingredient.trim())
-        .filter(Boolean);
+function handleSearch() {
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+  const selectedIngredients = Array.from(checkboxes).map(cb => cb.value);
 
-    const allIngredients = selectedIngredients.concat(additionalIngredients);
+  const additionalInput = document.getElementById('additional-ingredients').value;
+  if (additionalInput) {
+    selectedIngredients.push(...additionalInput.split(',').map(item => item.trim()));
+  }
 
-    const recipes = [
-        { name: 'Pancakes', ingredients: ['eggs', 'flour', 'milk'] },
-        { name: 'Cake', ingredients: ['flour', 'sugar', 'butter'] },
-        { name: 'Omelette', ingredients: ['eggs', 'butter'] }
-    ];
+  searchRecipes(selectedIngredients);
+}
 
-    const foundRecipes = recipes.filter(recipe => 
-        recipe.ingredients.every(ingredient => allIngredients.includes(ingredient))
-    );
+function searchRecipes(selectedIngredients) {
+  const resultsDiv = document.getElementById('recipe-results');
+  resultsDiv.innerHTML = '<h2>Recipes Found:</h2>';
 
-    const recipeList = document.getElementById('recipes');
-    recipeList.innerHTML = '';
-
-    if (foundRecipes.length > 0) {
-        foundRecipes.forEach(recipe => {
-            const listItem = document.createElement('li');
-            listItem.textContent = `${recipe.name}: Ingredients - ${recipe.ingredients.join(', ')}`;
-            recipeList.appendChild(listItem);
-        });
-    } else {
-        const noResults = document.createElement('li');
-        noResults.textContent = 'No recipes found. Try adding more ingredients!';
-        recipeList.appendChild(noResults);
+  for (const [name, recipe] of Object.entries(recipes)) {
+    const matches = recipe.ingredients.every(ingredient => selectedIngredients.includes(ingredient));
+    if (matches) {
+      const link = document.createElement('a');
+      link.href = recipe.url;
+      link.textContent = name;
+      resultsDiv.appendChild(link);
+      resultsDiv.appendChild(document.createElement('br'));
     }
-});
+  }
+}

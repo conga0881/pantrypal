@@ -1,37 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PantryPal</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PantryPal</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
-  <header>
+    <div class="slogan">Transform what you have into what you crave!</div>
     <h1>Welcome to PantryPal</h1>
-    <p class="slogan">Transform what you have into what you crave!</p>
-  </header>
+    <p>Find delicious recipes based on the ingredients you have!</p>
 
-  <main>
-    <section>
-      <h2>Search for Recipes</h2>
-      <div class="ingredient-selection">
-        <label>Select Ingredients:</label>
-        <div>
-          <input type="checkbox" value="Eggs" id="eggs"><label for="eggs">Eggs</label>
-          <input type="checkbox" value="Flour" id="flour"><label for="flour">Flour</label>
-          <input type="checkbox" value="Milk" id="milk"><label for="milk">Milk</label>
-          <input type="checkbox" value="Butter" id="butter"><label for="butter">Butter</label>
-          <input type="checkbox" value="Sugar" id="sugar"><label for="sugar">Sugar</label>
-        </div>
-        <input type="text" id="additional-ingredients" placeholder="Enter additional ingredients (e.g., chocolate)">
-        <button onclick="handleSearch()">Search</button>
-      </div>
-    </section>
+    <div class="search-container">
+        <h2>Search for Recipes</h2>
+        <select id="ingredient-list" multiple>
+            <option value="eggs">Eggs</option>
+            <option value="flour">Flour</option>
+            <option value="milk">Milk</option>
+            <option value="butter">Butter</option>
+            <option value="sugar">Sugar</option>
+            <option value="cheese">Cheese</option>
+            <option value="chocolate">Chocolate</option>
+            <option value="tomato">Tomato</option>
+            <option value="onion">Onion</option>
+        </select>
+        <input type="text" id="additional-ingredients" placeholder="Enter additional ingredients (optional)">
+        <button id="search-button">Search</button>
+    </div>
 
-    <section id="recipe-results"></section>
-  </main>
-
-  <script src="script.js"></script>
+    <div id="results"></div>
 </body>
 </html>

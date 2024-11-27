@@ -1,55 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PantryPal</title>
     <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <div class="slogan">Transform what you have into what you crave</div>
-    <h1>Welcome to PantryPal</h1>
-    <p>Find delicious recipes based on the ingredients you have!</p>
-
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Welcome to PantryPal</h1>
+        <p class="slogan">Transform what you have into what you crave</p>
+    </header>
+    
     <div class="search-container">
-      <h2>Search for Recipes</h2>
-      <!-- Ingredient Selection Dropdown -->
-      <label for="ingredient-select">Select Ingredients:</label>
-      <select id="ingredient-select" multiple>
-        <option value="eggs">Eggs</option>
-        <option value="flour">Flour</option>
-        <option value="milk">Milk</option>
-        <option value="butter">Butter</option>
-        <option value="sugar">Sugar</option>
-        <!-- Add more ingredients as necessary -->
-      </select>
-
-      <!-- Text Input for Additional Ingredients -->
-      <input type="text" id="ingredient-search" placeholder="Enter additional ingredients (e.g., chocolate)" />
-
-      <!-- Search Button -->
-      <button onclick="searchRecipes()">Search</button>
+        <h2>Search for Recipes</h2>
+        <select id="ingredient-search" multiple>
+            <option value="eggs">Eggs</option>
+            <option value="flour">Flour</option>
+            <option value="milk">Milk</option>
+            <option value="butter">Butter</option>
+            <option value="sugar">Sugar</option>
+        </select>
+        <br><br>
+        <button onclick="searchRecipes()">Search</button>
     </div>
 
-    <div id="search-results"></div>
-
-    <script>
-      function searchRecipes() {
-        const selectedIngredients = Array.from(document.getElementById('ingredient-select').selectedOptions).map(option => option.value);
-        const additionalIngredients = document.getElementById('ingredient-search').value.split(',');
-
-        const allIngredients = [...selectedIngredients, ...additionalIngredients].map(ingredient => ingredient.trim()).filter(Boolean);
-
-        // Show results
-        const resultContainer = document.getElementById('search-results');
-        if (allIngredients.length > 0) {
-          resultContainer.innerHTML = `<h3>Recipes for: ${allIngredients.join(', ')}</h3>`;
-          // Here you would replace this with an actual recipe search logic/API
-          resultContainer.innerHTML += `<p>Found recipes based on the ingredients: ${allIngredients.join(', ')}</p>`;
-        } else {
-          resultContainer.innerHTML = "<p>Please select or enter some ingredients to search for recipes.</p>";
-        }
-      }
-    </script>
-  </body>
+    <div id="recipe-results"></div>
+</body>
 </html>

@@ -5,30 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PantryPal</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
 </head>
 <body>
     <div class="slogan">Transform what you have into what you crave!</div>
+
     <h1>Welcome to PantryPal</h1>
     <p>Find delicious recipes based on the ingredients you have!</p>
 
     <div class="search-container">
         <h2>Search for Recipes</h2>
-        <select id="ingredient-list" multiple>
+        <label for="ingredient-select">Select Ingredients:</label>
+        <select id="ingredient-select" multiple>
             <option value="eggs">Eggs</option>
             <option value="flour">Flour</option>
             <option value="milk">Milk</option>
             <option value="butter">Butter</option>
             <option value="sugar">Sugar</option>
             <option value="cheese">Cheese</option>
-            <option value="chocolate">Chocolate</option>
-            <option value="tomato">Tomato</option>
-            <option value="onion">Onion</option>
         </select>
-        <input type="text" id="additional-ingredients" placeholder="Enter additional ingredients (optional)">
-        <button id="search-button">Search</button>
+        <br><br>
+        <label for="additional-ingredient">Enter additional ingredients (optional):</label>
+        <input type="text" id="additional-ingredient" placeholder="e.g., chocolate, vanilla">
+        <br><br>
+        <button onclick="handleSearch()">Search</button>
     </div>
 
-    <div id="results"></div>
+    <div id="recipe-results"></div>
+
+    <script src="script.js"></script>
 </body>
 </html>

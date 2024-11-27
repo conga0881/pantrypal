@@ -1,53 +1,28 @@
-document.getElementById('search-button').addEventListener('click', function() {
-    console.log("Search button clicked."); // Debug message
-
-    const selectedIngredients = Array.from(document.querySelectorAll('#ingredient-list option:checked'))
-        .map(option => option.value.toLowerCase());
-    console.log("Selected ingredients:", selectedIngredients); // Debug message
-
-    const additionalIngredients = document.getElementById('additional-ingredients').value
-        .split(',')
-        .map(ingredient => ingredient.trim().toLowerCase())
+function handleSearch() {
+    const selectedIngredients = Array.from(document.getElementById('ingredient-select').selectedOptions)
+        .map(option => option.value)
         .filter(Boolean);
-    console.log("Additional ingredients:", additionalIngredients); // Debug message
+    const additionalIngredients = document.getElementById('additional-ingredient').value.trim();
+    const ingredients = [...selectedIngredients, ...additionalIngredients.split(',')].map(ing => ing.trim()).filter(Boolean);
 
-    const allIngredients = [...selectedIngredients, ...additionalIngredients];
-    console.log("All ingredients:", allIngredients); // Debug message
-
-    if (allIngredients.length === 0) {
-        alert("Please select or enter at least one ingredient.");
+    if (ingredients.length === 0) {
+        alert('Please select or enter ingredients to search.');
         return;
     }
 
-    // Mock recipe database
     const recipes = {
-        "Pancakes": ["eggs", "flour", "milk"],
-        "Omelette": ["eggs", "butter", "cheese"],
-        "Cake": ["flour", "sugar", "butter", "eggs"],
-        "Tomato Soup": ["tomato", "onion", "butter"]
+        Pancakes: ['eggs', 'flour', 'milk', 'butter', 'sugar'],
+        Omelette: ['eggs', 'milk', 'cheese'],
+        "Chocolate Cake": ['flour', 'sugar', 'eggs', 'butter', 'milk'],
     };
 
-    console.log("Recipes database loaded."); // Debug message
+    const foundRecipes = Object.keys(recipes).filter(recipe =>
+        recipes[recipe].every(ingredient => ingredients.includes(ingredient))
+    );
 
-    const foundRecipes = Object.keys(recipes).filter(recipe => {
-        const recipeIngredients = recipes[recipe];
-        console.log(`Checking recipe: ${recipe}`, recipeIngredients); // Debug message
-        return allIngredients.every(ingredient => recipeIngredients.includes(ingredient));
-    });
-
-    console.log("Found recipes:", foundRecipes); // Debug message
-
-    const resultsContainer = document.getElementById('results');
-    resultsContainer.innerHTML = "";
-
-    if (foundRecipes.length > 0) {
-        foundRecipes.forEach(recipe => {
-            const recipeLink = document.createElement('a');
-            recipeLink.href = `${recipe.toLowerCase().replace(/ /g, '-')}.html`;
-            recipeLink.textContent = recipe;
-            resultsContainer.appendChild(recipeLink);
-        });
-    } else {
-        resultsContainer.textContent = "No recipes found.";
-    }
-});
+    const resultsDiv = document.getElementById('recipe-results');
+    resultsDiv.innerHTML = `<h2>Recipes for: ${ingredients.join(', ')}</h2>`;
+    resultsDiv.innerHTML += foundRecipes.length
+        ? foundRecipes.map(recipe => `<a href="${recipe.toLowerCase().replace(/\s+/g, '-')}.html">${recipe}</a>`).join('<br>')
+        : '<p>No recipes found for the selected ingredients.</p>';
+}

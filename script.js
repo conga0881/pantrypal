@@ -18,8 +18,13 @@ const recipes = [
 
 function searchRecipes() {
     const selectedIngredients = Array.from(
-        document.querySelectorAll('#ingredient-search option:checked')
+        document.querySelectorAll('#ingredient-dropdown option:checked')
     ).map(option => option.value);
+
+    const additionalInput = document.getElementById('additional-ingredients').value.trim();
+    if (additionalInput) {
+        selectedIngredients.push(...additionalInput.split(',').map(ing => ing.trim()));
+    }
 
     const filteredRecipes = recipes.filter(recipe =>
         recipe.ingredients.every(ingredient => selectedIngredients.includes(ingredient))

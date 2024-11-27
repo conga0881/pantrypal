@@ -15,13 +15,18 @@
     
     <div class="search-container">
         <h2>Search for Recipes</h2>
-        <select id="ingredient-search" multiple>
+        
+        <select id="ingredient-dropdown" multiple size="5">
             <option value="eggs">Eggs</option>
             <option value="flour">Flour</option>
             <option value="milk">Milk</option>
             <option value="butter">Butter</option>
             <option value="sugar">Sugar</option>
         </select>
+        
+        <p>OR add additional ingredients:</p>
+        <input type="text" id="additional-ingredients" placeholder="Enter ingredients (e.g., chocolate)">
+        
         <br><br>
         <button onclick="searchRecipes()">Search</button>
     </div>

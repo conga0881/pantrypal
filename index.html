@@ -8,22 +8,28 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <header>
+    <header class="header">
         <h1>Welcome to PantryPal</h1>
-        <p class="slogan">Transform what you have into what you crave</p>
+        <p class="slogan">Transform what you have into what you crave!</p>
     </header>
     
     <div class="search-container">
         <h2>Search for Recipes</h2>
         
-        <select id="ingredient-dropdown" multiple size="5">
-            <option value="eggs">Eggs</option>
-            <option value="flour">Flour</option>
-            <option value="milk">Milk</option>
-            <option value="butter">Butter</option>
-            <option value="sugar">Sugar</option>
-        </select>
-        
+        <button id="select-ingredients-btn" onclick="toggleDropdown()">Select Ingredients</button>
+        <div id="ingredient-dropdown" class="dropdown-content">
+            <label><input type="checkbox" value="eggs"> Eggs</label>
+            <label><input type="checkbox" value="flour"> Flour</label>
+            <label><input type="checkbox" value="milk"> Milk</label>
+            <label><input type="checkbox" value="butter"> Butter</label>
+            <label><input type="checkbox" value="sugar"> Sugar</label>
+            <label><input type="checkbox" value="salt"> Salt</label>
+            <label><input type="checkbox" value="chocolate"> Chocolate</label>
+            <label><input type="checkbox" value="vanilla"> Vanilla</label>
+            <label><input type="checkbox" value="baking powder"> Baking Powder</label>
+            <label><input type="checkbox" value="yeast"> Yeast</label>
+        </div>
+
         <p>OR add additional ingredients:</p>
         <input type="text" id="additional-ingredients" placeholder="Enter ingredients (e.g., chocolate)">
         
@@ -31,6 +37,6 @@
         <button onclick="searchRecipes()">Search</button>
     </div>
 
-    <div id="recipe-results"></div>
+    <div id="recipe-results" class="centered"></div>
 </body>
 </html>

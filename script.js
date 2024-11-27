@@ -16,10 +16,15 @@ const recipes = [
     }
 ];
 
+function toggleDropdown() {
+    const dropdown = document.getElementById('ingredient-dropdown');
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+}
+
 function searchRecipes() {
     const selectedIngredients = Array.from(
-        document.querySelectorAll('#ingredient-dropdown option:checked')
-    ).map(option => option.value);
+        document.querySelectorAll('#ingredient-dropdown input:checked')
+    ).map(input => input.value);
 
     const additionalInput = document.getElementById('additional-ingredients').value.trim();
     if (additionalInput) {
@@ -44,3 +49,4 @@ function searchRecipes() {
         resultsDiv.innerHTML = "<p>No recipes found with the selected ingredients.</p>";
     }
 }
+

@@ -1,73 +1,55 @@
-/* General body styling */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
     margin: 0;
     padding: 0;
-    background-color: #fff7f0;
-    color: #333;
 }
 
-/* Header and slogan styling */
+header {
+    background-color: #ff6f61;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 .slogan {
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: bold;
-    margin: 20px 0;
-    color: #e63946;
+    margin: 20px 10px;
+    color: #ff6f61;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-/* Underline animation for slogan */
-.slogan::after {
-    content: '';
-    display: block;
-    width: 0;
-    height: 2px;
-    margin: 10px auto;
-    background-color: #e63946;
-    animation: underline-expand 1s ease-in-out forwards;
-}
-
-@keyframes underline-expand {
-    0% {
-        width: 0;
-    }
-    100% {
-        width: 50%;
-    }
-}
-
-/* Search container styling */
 .search-container {
-    text-align: center;
-    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
     padding: 20px;
-    background: white;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    max-width: 600px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    gap: 20px;
 }
 
-.search-container h2 {
-    font-size: 1.5rem;
-    color: #e63946;
-}
-
-select, input[type="text"] {
-    width: 80%;
-    max-width: 500px;
+.ingredient-list {
     padding: 10px;
-    margin: 10px 0;
-    font-size: 1rem;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    background: white;
+    border-radius: 8px;
+    width: 200px;
+}
+
+.ingredient-list h2 {
+    color: #ff6f61;
+}
+
+.search-section {
+    text-align: center;
 }
 
 button {
     padding: 10px 20px;
-    font-size: 1rem;
-    background-color: #e63946;
+    background-color: #ff6f61;
     color: white;
     border: none;
     border-radius: 4px;
@@ -75,23 +57,10 @@ button {
 }
 
 button:hover {
-    background-color: #d62828;
+    background-color: #e65b55;
 }
 
-/* Recipe results */
-#results {
-    margin-top: 20px;
+#recipe-results {
+    margin: 20px auto;
     text-align: center;
-}
-
-#results a {
-    display: block;
-    font-size: 1.2rem;
-    color: #e63946;
-    text-decoration: none;
-    margin: 5px 0;
-}
-
-#results a:hover {
-    text-decoration: underline;
 }

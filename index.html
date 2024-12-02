@@ -5,33 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PantryPal</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
+    <header>
+        <h1>Transform what you have into what you crave!</h1>
+    </header>
+    
     <div class="slogan">Transform what you have into what you crave!</div>
 
-    <h1>Welcome to PantryPal</h1>
-    <p>Find delicious recipes based on the ingredients you have!</p>
-
     <div class="search-container">
-        <h2>Search for Recipes</h2>
-        <label for="ingredient-select">Select Ingredients:</label>
-        <select id="ingredient-select" multiple>
-            <option value="eggs">Eggs</option>
-            <option value="flour">Flour</option>
-            <option value="milk">Milk</option>
-            <option value="butter">Butter</option>
-            <option value="sugar">Sugar</option>
-            <option value="cheese">Cheese</option>
-        </select>
-        <br><br>
-        <label for="additional-ingredient">Enter additional ingredients (optional):</label>
-        <input type="text" id="additional-ingredient" placeholder="e.g., chocolate, vanilla">
-        <br><br>
-        <button onclick="handleSearch()">Search</button>
+        <div class="ingredient-list">
+            <h2>Select Ingredients:</h2>
+            <label><input type="checkbox" value="eggs"> Eggs</label><br>
+            <label><input type="checkbox" value="flour"> Flour</label><br>
+            <label><input type="checkbox" value="milk"> Milk</label><br>
+            <label><input type="checkbox" value="butter"> Butter</label><br>
+            <label><input type="checkbox" value="sugar"> Sugar</label><br>
+            <label><input type="checkbox" value="chocolate"> Chocolate</label><br>
+            <label><input type="checkbox" value="vanilla"> Vanilla</label><br>
+        </div>
+
+        <div class="search-section">
+            <h2>Search for Recipes</h2>
+            <button onclick="handleSearch()">Search</button>
+        </div>
     </div>
 
     <div id="recipe-results"></div>
-
-    <script src="script.js"></script>
 </body>
 </html>

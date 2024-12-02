@@ -47,6 +47,13 @@ header {
     text-align: center;
 }
 
+input[type="text"] {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
 button {
     padding: 10px 20px;
     background-color: #ff6f61;
